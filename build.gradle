@@ -1,0 +1,42 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.3'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.rakshit.aws'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+
+	implementation platform('com.amazonaws:aws-java-sdk-bom:1.11.1000')
+	implementation 'com.amazonaws:aws-java-sdk-s3'
+	implementation 'com.amazonaws:aws-java-sdk-sqs'
+	implementation("org.springframework.cloud:spring-cloud-starter-aws:2.2.0.RELEASE")
+	implementation 'org.springframework.cloud:spring-cloud-aws-messaging:2.2.2.RELEASE'
+	// Core and sts should have same version
+	// https://github.com/aws/aws-sdk-java/issues/2509#issuecomment-779370672
+	implementation 'com.amazonaws:aws-java-sdk-core:1.11.1000'
+	implementation 'com.amazonaws:aws-java-sdk-sts:1.11.1000'
+
+	compileOnly 'org.projectlombok:lombok:1.18.20'
+	annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	runtimeOnly 'com.h2database:h2'
+}
+
+
+test {
+	useJUnitPlatform()
+}
